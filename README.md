@@ -19,7 +19,7 @@ A complete, self-hosted desktop and web application for downloading manga from m
 [![GitHub Forks](https://img.shields.io/github/forks/Compromisee/MangaDL?style=flat-square&logo=github)](https://github.com/Compromisee/MangaDL/network)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Compromisee/MangaDL?style=flat-square&logo=github)](https://github.com/Compromisee/MangaDL/commits)
 
-[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Building](BUILD.md) • [Documentation](#file-documentation) • [Troubleshooting](#troubleshooting) • - Features →](FEATURES.md)
+[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Building](BUILD.md) • [Documentation](#file-documentation) • [Troubleshooting](#troubleshooting) • [Features](FEATURES.md)
 
 </div>
 
