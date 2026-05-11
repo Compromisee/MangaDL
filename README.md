@@ -62,7 +62,7 @@ Built with **Flask + Socket.IO** on the backend and a **vanilla JavaScript** fro
 ## Features
 
 <details>
-<summary><b>Click to expand full feature list</b></summary>
+<summary><b>Click to show simple features list</b></summary>
 
 ### Core
 - Search across **4 sources** simultaneously with multi-threaded queries
