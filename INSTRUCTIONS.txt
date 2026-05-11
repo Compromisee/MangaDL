@@ -1,0 +1,128 @@
+============================================
+  MangaDL - Quick Start Guide
+============================================
+
+INSTALLATION:
+  None required. The EXE is fully self-contained.
+
+USAGE:
+  1. Double-click MangaDL.exe (or MangaDL on macOS/Linux)
+
+  2. A black console window will open. Leave it open.
+     It displays:
+       Server: http://localhost:5000
+
+  3. Your default web browser will open automatically.
+     If not, manually visit http://localhost:5000
+
+  4. Use the dashboard to:
+       - Search for manga across multiple sources
+       - Click a result to open the detail view
+       - Pick chapters, format (CBZ/PDF/EPUB/Images), and mode
+       - Click Download
+
+  5. Files are saved to a 'downloads' folder created
+     automatically next to the EXE.
+
+  6. To stop:
+       - Close the browser tab AND
+       - Close the console window
+       (or press Ctrl+C in the console)
+
+============================================
+  FOLDER STRUCTURE AFTER FIRST RUN
+============================================
+
+YourFolder/
+  MangaDL.exe         <- the application (single file)
+  downloads/          <- created automatically
+    YourMangaTitle/
+      Chapter 1.cbz
+      Chapter 2.cbz
+      ...
+  temp/               <- temporary, auto-cleaned
+
+============================================
+  TROUBLESHOOTING
+============================================
+
+"Windows protected your PC" warning:
+  Click "More info" then "Run anyway".
+  Or right-click the exe -> Properties -> Unblock.
+
+Antivirus flags the EXE:
+  PyInstaller executables often trigger false positives.
+  Add MangaDL.exe to your antivirus exclusion list.
+
+Browser does not open automatically:
+  Manually visit http://localhost:5000 in any browser.
+
+Port 5000 is in use:
+  On macOS, disable AirPlay Receiver in System Settings.
+  Or close whatever else is using port 5000.
+
+"Permission denied" when saving downloads:
+  Move MangaDL.exe to a folder you have write access to.
+  Recommended locations:
+    - Documents folder
+    - Desktop
+    - User home folder
+  Avoid placing it in:
+    - Program Files
+    - System folders
+    - Read-only network drives
+
+Downloads are slow:
+  Open Settings in the dashboard.
+  Increase "Download threads" to 12 or 16.
+  Or decrease if your connection is unstable.
+
+EPUB images appear tiny:
+  Some readers don't support fixed-layout EPUB.
+  Use Apple Books, Calibre, Thorium, or Kobo.
+  Or export as CBZ for the best quality.
+
+"No chapters found" but the site has them:
+  Switch the language in the dropdown at the top
+  of the manga detail view.
+
+============================================
+  SUPPORTED SOURCES
+============================================
+
+  - MangaDex      (mangadex.org)      40+ languages
+  - MangaNato     (manganato.com)     English
+  - Webtoons      (webtoons.com)      Multi-language
+  - MangaKakalot  (mangakakalot.com)  English
+
+============================================
+  EXPORT FORMATS
+============================================
+
+  CBZ      Best for comic readers (YACReader, Komga)
+  PDF      Universal, works on any device
+  EPUB     Best for e-readers (Apple Books, Kobo)
+  Images   Raw images for custom workflows
+
+============================================
+  DOWNLOAD MODES
+============================================
+
+  By chapter    Each chapter as a separate file
+  By volume     Chapters grouped into volumes
+  All-in-one    Entire selection as one file
+
+============================================
+  HELP & SUPPORT
+============================================
+
+  Issues:    https://github.com/anibeat495/mangadl/issues
+  Docs:      https://github.com/anibeat495/mangadl
+  Updates:   https://github.com/anibeat495/mangadl/releases
+
+  When reporting issues, include:
+    - Your operating system and version
+    - The full error message from the console
+    - The URL or search query that caused the problem
+
+============================================

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MangaDL — Universal Manga Downloader</title>
+<meta name="description" content="Free, open-source manga, manhwa, and webtoon downloader. CBZ, PDF, EPUB export. Multi-source, multi-language, fully self-hosted.">
+<meta property="og:title" content="MangaDL — Universal Manga Downloader">
+<meta property="og:description" content="Download manga from MangaDex, MangaNato, Webtoons, and more. Free and open source.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#3b82f6">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700;8..60,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="material-icons-outlined">auto_stories</span>
+      <span>MangaDL</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#sources">Sources</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://github.com/Compromisee/MangaDL" class="btn btn-ghost" target="_blank">
+      <span class="material-icons-outlined">code</span>
+      <span>GitHub</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      v2.0 Released
+    </div>
+    <h1>Download manga<br>the way it should be.</h1>
+    <p class="hero-sub">A free, open-source, self-hosted downloader for manga, manhwa, and webtoons. No accounts, no ads, no telemetry — just the manga.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn btn-primary btn-lg">
+        <span class="material-icons-outlined">download</span>
+        Get MangaDL
+      </a>
+      <a href="https://github.com/Compromisee/MangaDL" target="_blank" class="btn btn-outline btn-lg">
+        <span class="material-icons-outlined">code</span>
+        View on GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><b>4</b><span>Sources</span></div>
+      <div><b>4</b><span>Formats</span></div>
+      <div><b>40+</b><span>Languages</span></div>
+      <div><b>9</b><span>Themes</span></div>
+    </div>
+  </div>
+
+  <!-- Mock UI preview -->
+  <div class="hero-preview">
+    <div class="preview-window">
+      <div class="preview-bar">
+        <span class="preview-dot red"></span>
+        <span class="preview-dot yellow"></span>
+        <span class="preview-dot green"></span>
+        <span class="preview-url">localhost:5000</span>
+      </div>
+      <div class="preview-body">
+        <div class="preview-side">
+          <div class="preview-side-item active"><span class="material-icons-outlined">home</span>Home</div>
+          <div class="preview-side-item"><span class="material-icons-outlined">search</span>Search</div>
+          <div class="preview-side-item"><span class="material-icons-outlined">downloading</span>Downloads</div>
+          <div class="preview-side-item"><span class="material-icons-outlined">folder_open</span>Library</div>
+        </div>
+        <div class="preview-main">
+          <div class="preview-card">
+            <div class="preview-progress"><div class="preview-fill"></div></div>
+            <span>One Piece — Vol. 102</span>
+          </div>
+          <div class="preview-card">
+            <div class="preview-progress"><div class="preview-fill" style="width:80%"></div></div>
+            <span>Solo Leveling — Ch. 175</span>
+          </div>
+          <div class="preview-card">
+            <div class="preview-progress"><div class="preview-fill" style="width:45%"></div></div>
+            <span>Berserk — Vol. 41</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED -->
+<section class="trusted">
+  <p>Pulls manga from</p>
+  <div class="trusted-grid">
+    <div class="trust-item">MangaDex</div>
+    <div class="trust-item">MangaNato</div>
+    <div class="trust-item">Webtoons</div>
+    <div class="trust-item">MangaKakalot</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-head">
+    <h2>Built for readers,<br>shipped for everyone.</h2>
+    <p>Everything you need to build a manga library — none of the bloat you don't.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">bolt</span>
+      <h3>Multi-threaded</h3>
+      <p>Concurrent page downloads with configurable worker count. Saturate your bandwidth, not your patience.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">shopping_cart</span>
+      <h3>Batch Cart</h3>
+      <p>Add multiple manga to a cart, configure each, then download them all in a single click.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">translate</span>
+      <h3>Multi-language</h3>
+      <p>40+ languages on MangaDex with live language switching. Read what you want, in your language.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">picture_as_pdf</span>
+      <h3>Any Format</h3>
+      <p>Export as CBZ, PDF, fixed-layout EPUB, or raw images. Compatible with every reader.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">collections_bookmark</span>
+      <h3>Volume Mode</h3>
+      <p>Download chapters grouped into proper volumes, just like a physical bookshelf.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">palette</span>
+      <h3>9 Themes</h3>
+      <p>Dark, Light, Midnight, Forest, Rose, Amber, Ocean, plus WCAG AAA high-contrast modes.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">cloud_off</span>
+      <h3>Fully Local</h3>
+      <p>No accounts, no servers, no telemetry. Runs entirely on your machine. Your library is yours.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">accessibility_new</span>
+      <h3>Accessible</h3>
+      <p>Keyboard navigation, reduced motion, larger text, screen reader friendly. Built for everyone.</p>
+    </div>
+    <div class="feature">
+      <span class="material-icons-outlined feature-icon">terminal</span>
+      <h3>4 Interfaces</h3>
+      <p>Pretty web dashboard, native desktop GUI, colorful TUI, scriptable CLI. Pick your favorite.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERFACES -->
+<section class="section section-alt" id="interfaces">
+  <div class="section-head">
+    <h2>One backend,<br>four interfaces.</h2>
+    <p>Whether you want a polished UI or a quick terminal command, MangaDL has you covered.</p>
+  </div>
+  <div class="interface-tabs">
+    <button class="iface-tab active" data-tab="web">
+      <span class="material-icons-outlined">web</span>
+      Web Dashboard
+    </button>
+    <button class="iface-tab" data-tab="gui">
+      <span class="material-icons-outlined">desktop_windows</span>
+      Desktop GUI
+    </button>
+    <button class="iface-tab" data-tab="tui">
+      <span class="material-icons-outlined">terminal</span>
+      Terminal UI
+    </button>
+    <button class="iface-tab" data-tab="cli">
+      <span class="material-icons-outlined">code</span>
+      Command Line
+    </button>
+  </div>
+
+  <div class="iface-panel active" data-panel="web">
+    <h3>Web Dashboard</h3>
+    <p>The flagship interface. Open <code>http://localhost:5000</code> in any browser. Splash screen, animated cards, live progress, themes, history, cart.</p>
+    <div class="iface-code">$ MangaDL.exe</div>
+  </div>
+  <div class="iface-panel" data-panel="gui">
+    <h3>Desktop GUI</h3>
+    <p>Native Tkinter desktop window — no browser required. Sidebar navigation, treeview chapters, live download polling.</p>
+    <div class="iface-code">$ python gui.py</div>
+  </div>
+  <div class="iface-panel" data-panel="tui">
+    <h3>Terminal UI</h3>
+    <p>Beautiful colorful terminal interface using Rich. Gradient ASCII banner, live progress bars, color-coded sources.</p>
+    <div class="iface-code">$ python tui.py</div>
+  </div>
+  <div class="iface-panel" data-panel="cli">
+    <h3>Command Line</h3>
+    <p>Scriptable, automation-ready. Perfect for cron jobs and shell scripts.</p>
+    <div class="iface-code">$ MangaDL-CLI download &lt;url&gt; --format pdf --mode volume</div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="section" id="sources">
+  <div class="section-head">
+    <h2>Pulls from the<br>biggest catalogs.</h2>
+    <p>Four sources covering millions of manga, manhwa, manhua, and webtoons.</p>
+  </div>
+  <div class="source-grid">
+    <div class="source">
+      <div class="source-status"></div>
+      <h3>MangaDex</h3>
+      <p>The largest open manga catalog. Official API, 40+ languages, full volume metadata, scanlator credits.</p>
+      <div class="source-tags">
+        <span>Official API</span><span>Multi-language</span><span>Volume metadata</span>
+      </div>
+    </div>
+    <div class="source">
+      <div class="source-status"></div>
+      <h3>MangaNato</h3>
+      <p>Fast English-translated manga aggregator. Great for catching up on popular series.</p>
+      <div class="source-tags">
+        <span>English</span><span>Fast updates</span><span>Wide selection</span>
+      </div>
+    </div>
+    <div class="source">
+      <div class="source-status"></div>
+      <h3>Webtoons</h3>
+      <p>The official LINE Webtoons platform. Vertical-scroll manhwa straight from the source.</p>
+      <div class="source-tags">
+        <span>Official</span><span>Vertical scroll</span><span>Original content</span>
+      </div>
+    </div>
+    <div class="source">
+      <div class="source-status"></div>
+      <h3>MangaKakalot</h3>
+      <p>Long-running manga aggregator with a deep archive of older series.</p>
+      <div class="source-tags">
+        <span>Deep archive</span><span>English</span><span>Reliable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="section section-alt" id="screenshots">
+  <div class="section-head">
+    <h2>Beautiful by default.</h2>
+    <p>Minimalist design, blue accents, JetBrains Mono and Source Serif. No carnival colors, no clutter.</p>
+  </div>
+  <div class="screenshot-grid">
+    <div class="screenshot">
+      <div class="screenshot-mock">
+        <div class="mock-card mock-1"></div>
+        <div class="mock-card mock-2"></div>
+        <div class="mock-card mock-3"></div>
+        <div class="mock-card mock-4"></div>
+        <div class="mock-card mock-5"></div>
+        <div class="mock-card mock-6"></div>
+      </div>
+      <div class="screenshot-label">Search Results Grid</div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-mock screenshot-mock-progress">
+        <div class="mock-line"></div>
+        <div class="mock-progress"><div class="mock-progress-fill"></div></div>
+        <div class="mock-line"></div>
+        <div class="mock-progress"><div class="mock-progress-fill" style="width:80%"></div></div>
+        <div class="mock-line"></div>
+        <div class="mock-progress"><div class="mock-progress-fill" style="width:45%"></div></div>
+      </div>
+      <div class="screenshot-label">Live Download Progress</div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-mock screenshot-mock-themes">
+        <div class="mock-swatch s1"></div>
+        <div class="mock-swatch s2"></div>
+        <div class="mock-swatch s3"></div>
+        <div class="mock-swatch s4"></div>
+        <div class="mock-swatch s5"></div>
+        <div class="mock-swatch s6"></div>
+        <div class="mock-swatch s7"></div>
+        <div class="mock-swatch s8"></div>
+        <div class="mock-swatch s9"></div>
+      </div>
+      <div class="screenshot-label">Multiple Themes</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section section-cta" id="download">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <h2>Get MangaDL today.</h2>
+    <p>Pre-built executables for every platform. No installation, no Python required, no setup. Just download and run.</p>
+
+    <div class="dl-grid">
+      <a href="https://github.com/Compromisee/MangaDL/releases/latest/download/MangaDL-Windows.zip" class="dl-card">
+        <span class="material-icons-outlined dl-icon">desktop_windows</span>
+        <h3>Windows</h3>
+        <p>x64 · ZIP · ~150 MB</p>
+        <span class="dl-btn">Download</span>
+      </a>
+      <a href="https://github.com/Compromisee/MangaDL/releases/latest/download/MangaDL-macOS.zip" class="dl-card">
+        <span class="material-icons-outlined dl-icon">laptop_mac</span>
+        <h3>macOS</h3>
+        <p>Universal · ZIP · ~140 MB</p>
+        <span class="dl-btn">Download</span>
+      </a>
+      <a href="https://github.com/Compromisee/MangaDL/releases/latest/download/MangaDL-Linux.tar.gz" class="dl-card">
+        <span class="material-icons-outlined dl-icon">computer</span>
+        <h3>Linux</h3>
+        <p>x64 · tar.gz · ~140 MB</p>
+        <span class="dl-btn">Download</span>
+      </a>
+    </div>
+
+    <div class="dl-source">
+      <p>Or build from source:</p>
+      <code>git clone https://github.com/Compromisee/MangaDL &amp;&amp; cd mangadl &amp;&amp; python app.py</code>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-head">
+    <h2>Frequently asked.</h2>
+    <p>Everything you wanted to know about MangaDL.</p>
+  </div>
+  <div class="faq">
+    <details class="faq-item" open>
+      <summary>Is it free?</summary>
+      <div>Yes — completely free and open source under the MIT license. No premium tier, no microtransactions, no ads.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need to install Python?</summary>
+      <div>If you use the pre-built EXE/binary releases, no. They're fully self-contained. Only needed if you want to run from source or contribute.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is it legal?</summary>
+      <div>The tool itself is legal. How you use it is your responsibility. Respect copyright laws in your country and support creators by buying official manga when available.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Does it work offline?</summary>
+      <div>The app runs locally and your downloaded files work offline forever. The download itself obviously requires an internet connection to fetch the manga.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Can I add my own source?</summary>
+      <div>Yes — extend the <code>BaseSource</code> class in <code>sources/base.py</code>, implement three methods, and register it. See the README for a full guide.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Why so many themes?</summary>
+      <div>Because not everyone reads in the dark. The high-contrast modes are WCAG AAA certified for users with visual impairments.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What's the difference between CBZ, PDF, and EPUB?</summary>
+      <div><b>CBZ</b> — best for comic readers like YACReader. <b>PDF</b> — universal, works anywhere. <b>EPUB</b> — best for e-readers like Apple Books, Kobo. <b>Images</b> — raw files for custom workflows.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Does it collect any data?</summary>
+      <div>No. Zero telemetry. Zero analytics. Zero tracking. Your downloads, history, and settings stay on your machine.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Will it work with Kindle?</summary>
+      <div>Sideload CBZ or EPUB files via Send to Kindle or USB. Native MOBI support is on the roadmap.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How do I update?</summary>
+      <div>Download the new release and replace the old EXE. Your downloads folder, history, and settings persist between versions.</div>
+    </details>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="material-icons-outlined">auto_stories</span>
+        <span>MangaDL</span>
+      </div>
+      <p>Universal manga, manhwa, and webtoon downloader.<br>Free and open source forever.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Project</h4>
+        <a href="https://github.com/Compromisee/MangaDL" target="_blank">GitHub</a>
+        <a href="https://github.com/Compromisee/MangaDL/releases" target="_blank">Releases</a>
+        <a href="https://github.com/Compromisee/MangaDL/issues" target="_blank">Issues</a>
+        <a href="https://github.com/Compromisee/MangaDL/blob/main/LICENSE" target="_blank">License</a>
+      </div>
+      <div class="footer-col">
+        <h4>Docs</h4>
+        <a href="https://github.com/Compromisee/MangaDL/blob/main/README.md" target="_blank">README</a>
+        <a href="https://github.com/Compromisee/MangaDL/blob/main/BUILD.md" target="_blank">Build Guide</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <a href="https://github.com/Compromisee/MangaDL/discussions" target="_blank">Discussions</a>
+        <a href="https://github.com/Compromisee/MangaDL/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 MangaDL Contributors · MIT License</p>
+    <p>Built with care for readers everywhere.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

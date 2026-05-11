@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <meta name="theme-color" content="#3b82f6">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MangaDL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Splash -->
+    <div id="splash" class="splash">
+        <div class="splash-inner">
+            <div class="splash-icon">
+                <span class="material-icons-outlined splash-icon-main">auto_stories</span>
+                <div class="splash-ring"></div>
+                <div class="splash-ring ring-2"></div>
+            </div>
+            <h1 class="splash-title">MangaDL</h1>
+            <p class="splash-sub">Universal manga downloader</p>
+            <div class="splash-loader"><div class="splash-loader-bar"></div></div>
+            <p class="splash-hint">Initializing sources...</p>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- App -->
+    <div id="app" class="app hidden">
+
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="material-icons-outlined brand-icon">auto_stories</span>
+                <div>
+                    <span class="brand-name">MangaDL</span>
+                    <span class="brand-ver">v2.0</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section-label">Navigate</div>
+            <a class="nav-link active" data-view="home" href="#">
+                <span class="material-icons-outlined">home</span><span>Home</span>
+            </a>
+            <a class="nav-link" data-view="search" href="#">
+                <span class="material-icons-outlined">search</span><span>Search</span>
+            </a>
+            <a class="nav-link" data-view="url" href="#">
+                <span class="material-icons-outlined">link</span><span>URL Import</span>
+            </a>
+
+            <div class="sidebar-section-label">Manage</div>
+            <a class="nav-link" data-view="cart" href="#">
+                <span class="material-icons-outlined">shopping_cart</span><span>Cart</span>
+                <span class="nav-badge" id="cartBadge" style="display:none">0</span>
+            </a>
+            <a class="nav-link" data-view="queue" href="#">
+                <span class="material-icons-outlined">queue</span><span>Queue</span>
+            </a>
+            <a class="nav-link" data-view="downloads" href="#">
+                <span class="material-icons-outlined">downloading</span><span>Downloads</span>
+                <span class="nav-badge" id="navBadge" style="display:none">0</span>
+            </a>
+            <a class="nav-link" data-view="library" href="#">
+                <span class="material-icons-outlined">folder_open</span><span>Library</span>
+            </a>
+            <a class="nav-link" data-view="history" href="#">
+                <span class="material-icons-outlined">history</span><span>History</span>
+            </a>
+
+            <div class="sidebar-section-label">System</div>
+            <a class="nav-link" data-view="settings" href="#">
+                <span class="material-icons-outlined">tune</span><span>Settings</span>
+            </a>
+            <a class="nav-link" data-view="about" href="#">
+                <span class="material-icons-outlined">info</span><span>About</span>
+            </a>
+
+            <div class="sidebar-spacer"></div>
+            <div class="sidebar-footer">
+                <div class="sidebar-stat">
+                    <span class="material-icons-outlined">dns</span>
+                    <span id="sourceCountLabel">4 sources online</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main -->
+        <main class="main" id="main">
+            <header class="topbar">
+                <button class="topbar-toggle" id="sidebarToggle">
+                    <span class="material-icons-outlined">menu</span>
+                </button>
+                <div class="topbar-breadcrumb" id="breadcrumb">
+                    <span class="material-icons-outlined">home</span><span>Home</span>
+                </div>
+                <div class="topbar-right">
+                    <button class="topbar-pill cart-pill" id="cartPill" style="display:none" data-goto="cart">
+                        <span class="material-icons-outlined">shopping_cart</span>
+                        <span id="cartPillCount">0</span>
+                    </button>
+                    <div class="topbar-pill" id="activePill" style="display:none">
+                        <span class="material-icons-outlined topbar-pill-icon pulse">downloading</span>
+                        <span id="activePillCount">0</span> active
+                    </div>
+
+                    <div class="theme-picker" id="themePicker">
+                        <button class="topbar-icon" id="themeBtn" title="Theme">
+                            <span class="material-icons-outlined">palette</span>
+                        </button>
+                        <div class="theme-dropdown" id="themeDropdown">
+                            <div class="theme-dropdown-header">Theme</div>
+                            <button class="theme-option" data-theme="dark">
+                                <div class="theme-swatch swatch-dark"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Dark</span>
+                                    <span class="theme-desc">Default</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="light">
+                                <div class="theme-swatch swatch-light"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Light</span>
+                                    <span class="theme-desc">Bright</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="midnight">
+                                <div class="theme-swatch swatch-midnight"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Midnight</span>
+                                    <span class="theme-desc">Pure black</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="forest">
+                                <div class="theme-swatch swatch-forest"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Forest</span>
+                                    <span class="theme-desc">Green accent</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="rose">
+                                <div class="theme-swatch swatch-rose"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Rose</span>
+                                    <span class="theme-desc">Warm pink</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="amber">
+                                <div class="theme-swatch swatch-amber"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Amber</span>
+                                    <span class="theme-desc">Sepia warm</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="ocean">
+                                <div class="theme-swatch swatch-ocean"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">Ocean</span>
+                                    <span class="theme-desc">Deep teal</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <div class="theme-divider"></div>
+                            <button class="theme-option" data-theme="hc-dark">
+                                <div class="theme-swatch swatch-hc-dark"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">HC Dark</span>
+                                    <span class="theme-desc">High contrast</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                            <button class="theme-option" data-theme="hc-light">
+                                <div class="theme-swatch swatch-hc-light"></div>
+                                <div class="theme-info">
+                                    <span class="theme-name">HC Light</span>
+                                    <span class="theme-desc">High contrast</span>
+                                </div>
+                                <span class="material-icons-outlined theme-check">check</span>
+                            </button>
+                        </div>
+                </div>
+                </div>
+            </header>
+
+            <div class="content" id="content">
+
+                <!-- HOME -->
+                <section class="view active" id="view-home">
+                    <div class="home-hero">
+                        <div class="home-hero-bg"></div>
+                        <div class="home-hero-content">
+                            <span class="material-icons-outlined home-hero-icon">auto_stories</span>
+                            <h1>Welcome to MangaDL</h1>
+                            <p>Download manga, manhwa, and webtoons from multiple sources.</p>
+                            <div class="home-hero-actions">
+                                <button class="btn btn-accent btn-lg" data-goto="search">
+                                    <span class="material-icons-outlined">search</span>Start Searching
+                                </button>
+                                <button class="btn btn-outline btn-lg" data-goto="url">
+                                    <span class="material-icons-outlined">link</span>Import URL
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-grid">
+                        <div class="home-card" data-goto="search">
+                            <span class="material-icons-outlined home-card-icon">search</span>
+                            <h3>Search</h3>
+                            <p>Search across all sources simultaneously.</p>
+                        </div>
+                        <div class="home-card" data-goto="cart">
+                            <span class="material-icons-outlined home-card-icon">shopping_cart</span>
+                            <h3>Cart</h3>
+                            <p>Add manga to cart and batch download everything at once.</p>
+                        </div>
+                        <div class="home-card" data-goto="downloads">
+                            <span class="material-icons-outlined home-card-icon">downloading</span>
+                            <h3>Downloads</h3>
+                            <p>Monitor progress with real-time speed and chapter tracking.</p>
+                        </div>
+                        <div class="home-card" data-goto="library">
+                            <span class="material-icons-outlined home-card-icon">folder_open</span>
+                            <h3>Library</h3>
+                            <p>Browse downloaded files organized by title.</p>
+                        </div>
+                    </div>
+                    <div class="home-sources">
+                        <h2>Supported Sources</h2>
+                        <div class="source-cards">
+                            <div class="source-card"><div class="source-card-dot dot-online"></div><h4>MangaDex</h4><p>40+ languages</p></div>
+                            <div class="source-card"><div class="source-card-dot dot-online"></div><h4>MangaNato</h4><p>Fast, English</p></div>
+                            <div class="source-card"><div class="source-card-dot dot-online"></div><h4>Webtoons</h4><p>Official platform</p></div>
+                            <div class="source-card"><div class="source-card-dot dot-online"></div><h4>MangaKakalot</h4><p>Wide selection</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SEARCH -->
+                <section class="view" id="view-search">
+                    <div class="view-header">
+                        <div><h1>Search</h1><p>Find manga across all sources</p></div>
+                    </div>
+                    <div class="search-bar">
+                        <span class="material-icons-outlined">search</span>
+                        <input type="text" id="searchInput" placeholder="Title, author, keyword..." autocomplete="off">
+                        <select id="searchSource">
+                            <option value="all">All Sources</option>
+                            <option value="mangadex">MangaDex</option>
+                            <option value="manganato">MangaNato</option>
+                            <option value="webtoons">Webtoons</option>
+                            <option value="mangakakalot">MangaKakalot</option>
+                        </select>
+                        <button class="btn btn-accent" id="searchBtn">
+                            <span class="material-icons-outlined">search</span>Search
+                        </button>
+                    </div>
+                    <div class="search-meta" id="searchMeta" style="display:none">
+                        <span id="resultCountLabel">0 results</span>
+                        <div class="view-modes">
+                            <button class="vm-btn active" id="gridBtn"><span class="material-icons-outlined">grid_view</span></button>
+                            <button class="vm-btn" id="listBtn"><span class="material-icons-outlined">view_list</span></button>
+                        </div>
+                    </div>
+                    <div class="spinner-wrap" id="searchSpinner" style="display:none">
+                        <div class="spinner"></div><span>Searching sources...</span>
+                    </div>
+                    <div class="results" id="searchResults"></div>
+                </section>
+
+                <!-- URL IMPORT -->
+                <section class="view" id="view-url">
+                    <div class="view-header"><div><h1>URL Import</h1><p>Paste a manga URL from any supported source</p></div></div>
+                    <div class="url-bar">
+                        <span class="material-icons-outlined">link</span>
+                        <input type="text" id="urlInput" placeholder="https://mangadex.org/title/...">
+                        <button class="btn btn-accent" id="urlBtn">
+                            <span class="material-icons-outlined">download</span>Fetch
+                        </button>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag">MangaDex</span><span class="tag">MangaNato</span>
+                        <span class="tag">Webtoons</span><span class="tag">MangaKakalot</span>
+                    </div>
+                    <div class="spinner-wrap" id="urlSpinner" style="display:none">
+                        <div class="spinner"></div><span>Fetching manga info...</span>
+                    </div>
+                </section>
+
+                <!-- CART -->
+                <section class="view" id="view-cart">
+                    <div class="view-header">
+                        <div><h1>Cart</h1><p>Batch download multiple manga at once</p></div>
+                        <div class="view-header-actions">
+                            <button class="btn btn-ghost" id="clearCartBtn">
+                                <span class="material-icons-outlined">remove_shopping_cart</span>Clear cart
+                            </button>
+                            <button class="btn btn-accent" id="downloadCartBtn">
+                                <span class="material-icons-outlined">download</span>Download All
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-options">
+                        <div class="cart-opt">
+                            <label>Format</label>
+                            <select id="cartFormat">
+                                <option value="cbz">CBZ</option><option value="pdf">PDF</option>
+                                <option value="epub">EPUB</option><option value="images">Images</option>
+                            </select>
+                        </div>
+                        <div class="cart-opt">
+                            <label>Mode</label>
+                            <select id="cartMode">
+                                <option value="chapter">By chapter</option>
+                                <option value="volume">By volume</option>
+                                <option value="all">All-in-one</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cart-list" id="cartList">
+                        <div class="empty">
+                            <span class="material-icons-outlined">shopping_cart</span>
+                            <p>Cart is empty. Search for manga and add them here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- QUEUE -->
+                <section class="view" id="view-queue">
+                    <div class="view-header">
+                        <div><h1>Queue</h1><p>Pending downloads waiting to start</p></div>
+                    </div>
+                    <div class="queue-list" id="queueList">
+                        <div class="empty">
+                            <span class="material-icons-outlined">queue</span>
+                            <p>Queue is empty</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DOWNLOADS -->
+                <section class="view" id="view-downloads">
+                    <div class="view-header">
+                        <div><h1>Downloads</h1><p>Active and completed downloads</p></div>
+                        <div class="view-header-actions">
+                            <button class="btn btn-ghost" id="clearDoneBtn">
+                                <span class="material-icons-outlined">delete_sweep</span>Clear done
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dl-list" id="dlList">
+                        <div class="empty">
+                            <span class="material-icons-outlined">cloud_download</span>
+                            <p>No downloads yet</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LIBRARY -->
+                <section class="view" id="view-library">
+                    <div class="view-header">
+                        <div><h1>Library</h1><p>Downloaded files</p></div>
+                        <div class="view-header-actions">
+                            <button class="btn btn-ghost" id="openDirBtn">
+                                <span class="material-icons-outlined">folder_open</span>Open folder
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lib-list" id="libList">
+                        <div class="empty"><span class="material-icons-outlined">inventory_2</span><p>Library is empty</p></div>
+                    </div>
+                </section>
+
+                <!-- HISTORY -->
+                <section class="view" id="view-history">
+                    <div class="view-header">
+                        <div><h1>History</h1><p>Previously viewed manga</p></div>
+                        <div class="view-header-actions">
+                            <button class="btn btn-ghost" id="clearHistBtn">
+                                <span class="material-icons-outlined">delete</span>Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <div class="empty"><span class="material-icons-outlined">history</span><p>No history yet</p></div>
+                    </div>
+                </section>
+
+                <!-- SETTINGS -->
+                <section class="view" id="view-settings">
+                    <div class="view-header"><div><h1>Settings</h1><p>Configure MangaDL</p></div></div>
+                    <div class="settings-list">
+                        <div class="setting">
+                            <div><span class="setting-name">Download threads</span><span class="setting-desc">Concurrent image downloads per chapter</span></div>
+                            <select id="sThreads"><option value="2">2</option><option value="4">4</option><option value="6">6</option><option value="8" selected>8</option><option value="12">12</option><option value="16">16</option></select>
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Default format</span><span class="setting-desc">Export format for new downloads</span></div>
+                            <select id="sFormat"><option value="cbz">CBZ</option><option value="pdf">PDF</option><option value="epub">EPUB</option><option value="images">Images</option></select>
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Default mode</span><span class="setting-desc">How chapters are packaged</span></div>
+                            <select id="sMode"><option value="chapter">By chapter</option><option value="volume">By volume</option><option value="all">All-in-one</option></select>
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Download directory</span><span class="setting-desc" id="sDirLabel">./downloads</span></div>
+                            <div class="setting-dir-group">
+                                <input type="text" id="sDirInput" class="setting-dir-input" placeholder="./downloads">
+                                <button class="btn btn-ghost btn-sm" id="sDirApply">
+                                    <span class="material-icons-outlined">check</span>Apply
+                                </button>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Request timeout</span><span class="setting-desc">Seconds before a request times out</span></div>
+                            <input type="number" id="sTimeout" value="30" min="5" max="120" class="setting-number">
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Retry attempts</span><span class="setting-desc">Number of retries on failed page downloads</span></div>
+                            <input type="number" id="sRetries" value="3" min="1" max="10" class="setting-number">
+                        </div>
+                        <div class="setting">
+                            <div><span class="setting-name">Max concurrent tasks</span><span class="setting-desc">Maximum simultaneous manga downloads</span></div>
+                            <select id="sMaxTasks"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ABOUT -->
+                <section class="view" id="view-about">
+                    <div class="about-page">
+                        <span class="material-icons-outlined about-icon">auto_stories</span>
+                        <h1>MangaDL</h1>
+                        <p class="about-ver">Version 2.0</p>
+                        <p class="about-desc">Universal manga, manhwa, and webtoon downloader.</p>
+                        <div class="about-stats">
+                            <div class="about-stat"><span class="about-stat-num">4</span><span>Sources</span></div>
+                            <div class="about-stat"><span class="about-stat-num">4</span><span>Formats</span></div>
+                            <div class="about-stat"><span class="about-stat-num">3</span><span>Modes</span></div>
+                            <div class="about-stat"><span class="about-stat-num">40+</span><span>Languages</span></div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- MODAL -->
+        <div class="modal-overlay" id="mangaModal">
+            <div class="modal">
+                <div class="modal-top">
+                    <h2 id="mTitle">Title</h2>
+                    <div class="modal-top-actions">
+                        <button class="btn btn-ghost btn-sm" id="mAddCart" title="Add to cart">
+                            <span class="material-icons-outlined">add_shopping_cart</span>Add to Cart
+                        </button>
+                        <button class="modal-close" id="mClose">
+                            <span class="material-icons-outlined">close</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body" id="mBody">
+                    <div class="m-detail">
+                        <div class="m-left">
+                            <div class="m-cover-wrap">
+                                <div class="m-cover-placeholder"><span class="material-icons-outlined">image</span></div>
+                                <img id="mCover" src="" referrerpolicy="no-referrer" alt="" class="m-cover-img">
+                            </div>
+                            <div class="m-meta">
+                                <div class="m-meta-row"><span class="material-icons-outlined">person</span><span id="mAuthor">-</span></div>
+                                <div class="m-meta-row"><span class="material-icons-outlined">info</span><span id="mStatus">-</span></div>
+                                <div class="m-meta-row"><span class="material-icons-outlined">dns</span><span id="mSource">-</span></div>
+                                <div class="m-meta-row"><span class="material-icons-outlined">library_books</span><span id="mChCount">-</span></div>
+                                <div class="m-meta-row"><span class="material-icons-outlined">collections_bookmark</span><span id="mVolCount">-</span></div>
+                            </div>
+                            <div class="m-genres" id="mGenres"></div>
+                            <p class="m-desc" id="mDesc"></p>
+                        </div>
+                        <div class="m-right">
+                            <div class="m-opts">
+                                <h3>Download Options</h3>
+                                <div class="m-opt-row" id="mLangRow" style="display:none">
+                                    <label>Language</label><select id="mLang"></select>
+                                </div>
+                                <div class="m-opt-row">
+                                    <label>Format</label>
+                                    <select id="mFormat"><option value="cbz">CBZ</option><option value="pdf">PDF</option><option value="epub">EPUB</option><option value="images">Images</option></select>
+                                </div>
+                                <div class="m-opt-row">
+                                    <label>Mode</label>
+                                    <select id="mMode"><option value="chapter">By chapter</option><option value="volume">By volume</option><option value="all">All-in-one</option></select>
+                                </div>
+                                <div class="m-opt-row" id="mChRangeRow">
+                                    <label>Range</label>
+                                    <div class="range-group"><input type="text" id="mChFrom" placeholder="From"><span>to</span><input type="text" id="mChTo" placeholder="To"></div>
+                                </div>
+                                <div class="m-opt-row" id="mVolRangeRow" style="display:none">
+                                    <label>Volumes</label>
+                                    <div class="range-group"><input type="text" id="mVolFrom" placeholder="From"><span>to</span><input type="text" id="mVolTo" placeholder="To"></div>
+                                </div>
+                                <div class="m-opt-actions">
+                                    <button class="btn btn-ghost btn-sm" id="mSelAll">Select all</button>
+                                    <button class="btn btn-ghost btn-sm" id="mSelNone">None</button>
+                                    <button class="btn btn-ghost btn-sm" id="mSelInv">Invert</button>
+                                </div>
+                                <button class="btn btn-accent btn-block" id="mDownloadBtn">
+                                    <span class="material-icons-outlined">download</span>Download
+                                </button>
+                            </div>
+                            <div class="m-tabs">
+                                <button class="m-tab active" data-tab="chapters"><span class="material-icons-outlined">list</span>Chapters</button>
+                                <button class="m-tab" data-tab="volumes"><span class="material-icons-outlined">collections_bookmark</span>Volumes</button>
+                            </div>
+                            <div class="m-list-wrap" id="mChaptersWrap">
+                                <div class="m-list-bar"><span id="mChListCount">0 chapters</span><input type="text" id="mChFilter" placeholder="Filter..."></div>
+                                <div class="m-list" id="mChList"></div>
+                            </div>
+                            <div class="m-list-wrap" id="mVolumesWrap" style="display:none">
+                                <div class="m-list-bar"><span id="mVolListCount">0 volumes</span><input type="text" id="mVolFilter" placeholder="Filter..."></div>
+                                <div class="m-list" id="mVolList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-loader" id="mLoader" style="display:none">
+                    <div class="spinner"></div><span>Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
